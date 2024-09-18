@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: HomeScreen(),
@@ -49,7 +49,8 @@ Future<void> _initNotiSetting() async {
   DarwinInitializationSettings(
       requestSoundPermission: true,
       requestBadgePermission: true,
-      requestAlertPermission: true);
+      requestAlertPermission: true
+  );
 
   //Notification에 위에서 설정한 안드로이드, IOS 초기 설정 값 삽입
   final InitializationSettings initSettings = InitializationSettings(

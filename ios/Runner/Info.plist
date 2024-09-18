@@ -45,5 +45,8 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<key>NSUserNotificationUsageDescription</key>
+    <string>앱이 알림을 보낼 수 있도록 허용하세요.</string>
 </dict>
 </plist>

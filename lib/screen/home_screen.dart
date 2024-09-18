@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 int id=0;
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -13,6 +14,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+
+  // 권한을 확인하고 요청하는 함수
+  Future<void> checkAndRequestNotificationPermission() async {
+    // iOS는 permission_handler가 직접 알림 권한을 처리하지 않음
+    if (await Permission.notification.isGranted) {
+      print('Notification permission already granted.');
+    } else if (await Permission.notification.isDenied) {
+      // 알림 권한이 거부된 경우 요청
+      PermissionStatus status = await Permission.notification.request();
+      if (status.isGranted) {
+        print('Notification permission granted.');
+      } else {
+        print('Notification permission denied.');
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkAndRequestNotificationPermission();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,9 +68,8 @@ Future<void> _showNotification() async {
       importance: Importance.max,
       priority: Priority.high,
       ticker: 'ticker');
-  const NotificationDetails notificationDetails =
-  NotificationDetails(android: androidNotificationDetails);
+  const NotificationDetails notificationDetails = NotificationDetails(android: androidNotificationDetails);
   await flutterLocalNotificationsPlugin.show(
-      id++, 'plain title', 'plain body', notificationDetails,
+      id++, 'plain title1', 'plain body2', notificationDetails,
       payload: 'item x');
 }
