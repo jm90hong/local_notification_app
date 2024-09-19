@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
 
-  // 권한을 확인하고 요청하는 함수
+  // 권한을 확인하고 요청하는 함수 ios, android 가능.
   Future<void> checkAndRequestNotificationPermission() async {
     // iOS는 permission_handler가 직접 알림 권한을 처리하지 않음
     if (await Permission.notification.isGranted) {
@@ -60,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
 
 Future<void> _showNotification() async {
   const AndroidNotificationDetails androidNotificationDetails =
