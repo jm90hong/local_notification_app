@@ -3,12 +3,15 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:local_notification_app/screen/home_screen.dart';
 
 
+//todo 초기 notification 세팅.-> 사용 안함.
 void initNotification() async{
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
   FlutterLocalNotificationsPlugin();
   flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
       AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
 }
+
+
 
 
 void main() async{
@@ -35,6 +38,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//todo 초기 notification 세팅.
 Future<void> _initNotiSetting() async {
   //Notification 플로그인 객체 생성
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
